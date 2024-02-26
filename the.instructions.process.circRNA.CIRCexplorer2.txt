@@ -1,0 +1,84 @@
+library('Ularcirc')
+library("org.Mm.eg.db")
+library("TxDb.Mmusculus.UCSC.mm10.ensGene")
+
+Ularcirc()
+
+CIRCexplorer2 parse -t STAR Chimeric.out.junction.4 
+
+CIRCexplorer2 annotate -r mm10.genes.4.canonical.chr.dup.col.pred -g mm10.genome.fa.canonical.chr.fa -b back_spliced_junction.bed -o circularRNA_known.txt
+
+grep -v '^J' yourfile.txt > stripped.txt
+sed -i '/^J/d' noc_star_v4.Chimeric.out.junction
+sed -i '/^G/d' noc_star_v4.Chimeric.out.junction
+sed -i '/^M/d' noc_star_v4.Chimeric.out.junction
+sed -i '/^#/d' noc_star_v4.Chimeric.out.junction
+
+sed -i '/^J/d' day1_star_v4.Chimeric.out.junction
+sed -i '/^G/d' day1_star_v4.Chimeric.out.junction
+sed -i '/^M/d' day1_star_v4.Chimeric.out.junction
+sed -i '/^#/d' day1_star_v4.Chimeric.out.junction
+
+sed -i '/^J/d' day5_star_v4.Chimeric.out.junction
+sed -i '/^G/d' day5_star_v4.Chimeric.out.junction
+sed -i '/^M/d' day5_star_v4.Chimeric.out.junction
+sed -i '/^#/d' day5_star_v4.Chimeric.out.junction
+
+grep -v '^J' noc_star_v4.Chimeric.out.junction > noc_star_v4.Chimeric.out.junction.1
+grep -v '^G' noc_star_v4.Chimeric.out.junction.1 > noc_star_v4.Chimeric.out.junction.2
+grep -v '^M' noc_star_v4.Chimeric.out.junction.2 > noc_star_v4.Chimeric.out.junction.3
+grep -v '^#' noc_star_v4.Chimeric.out.junction.3 > noc_star_v4.Chimeric.out.junction.4
+
+grep -v '^J' day1_star_v4.Chimeric.out.junction > day1_star_v4.Chimeric.out.junction.1
+grep -v '^G' day1_star_v4.Chimeric.out.junction.1 > day1_star_v4.Chimeric.out.junction.2
+grep -v '^M' day1_star_v4.Chimeric.out.junction.2 > day1_star_v4.Chimeric.out.junction.3
+grep -v '^#' day1_star_v4.Chimeric.out.junction.3 > day1_star_v4.Chimeric.out.junction.4
+
+grep -v '^J' day5_star_v4.Chimeric.out.junction > day5_star_v4.Chimeric.out.junction.1
+grep -v '^G' day5_star_v4.Chimeric.out.junction.1 > day5_star_v4.Chimeric.out.junction.2
+grep -v '^M' day5_star_v4.Chimeric.out.junction.2 > day5_star_v4.Chimeric.out.junction.3
+grep -v '^#' day5_star_v4.Chimeric.out.junction.3 > day5_star_v4.Chimeric.out.junction.4
+
+#######################################
+
+CIRCexplorer2 parse -t STAR \
+-b noc_star_v4.Chimeric.out.junction.4.BJS.bed \
+noc_star_v4.Chimeric.out.junction.4 
+
+CIRCexplorer2 parse -t STAR \
+-b day1_star_v4.Chimeric.out.junction.4.BJS.bed \
+day1_star_v4.Chimeric.out.junction.4
+
+CIRCexplorer2 parse -t STAR \
+-b day5_star_v4.Chimeric.out.junction.4.BJS.bed \
+day5_star_v4.Chimeric.out.junction.4
+
+#######################3
+
+CIRCexplorer2 annotate \
+-r mm10.genes.4.canonical.chr.dup.col.pred \
+-g mm10.genome.fa.canonical.chr.fa \
+-b noc_star_v4.Chimeric.out.junction.4.BJS.bed \
+-o noc_star_v4.Chimeric.out.junction.4.BJS.bed.circularRNA_known.txt
+
+CIRCexplorer2 annotate \
+-r mm10.genes.4.canonical.chr.dup.col.pred \
+-g mm10.genome.fa.canonical.chr.fa \
+-b day1_star_v4.Chimeric.out.junction.4.BJS.bed \
+-o day1_star_v4.Chimeric.out.junction.4.BJS.bed.circularRNA_known.txt
+
+
+CIRCexplorer2 annotate \
+-r mm10.genes.4.canonical.chr.dup.col.pred \
+-g mm10.genome.fa.canonical.chr.fa \
+-b day5_star_v4.Chimeric.out.junction.4.BJS.bed \
+-o day5_star_v4.Chimeric.out.junction.4.BJS.bed.circularRNA_known.txt
+
+
+
+
+
+
+
+
+
